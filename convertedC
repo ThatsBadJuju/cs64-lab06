@@ -1,0 +1,58 @@
+void cluster(int *arr, int arr_len, int depth) {
+    int sum = 0;
+    int avg = 0;
+
+    int small_arr[10];
+    int big_arr[10];
+
+    int startingPoint = 0
+    print(depth)
+    goto loop;
+}
+
+loop:
+    if(startingPoint >= arr_len) {
+        goto cluster2;
+    }
+    print(arr[startingPoint]);
+    sum += arr[startingPoint];
+    goto loop;
+
+cluster2:
+    if(depth == 0 || arr_len == 1) {
+        return;
+    }
+    avg = sum / arr_len;
+    
+    int j = 0;
+    int k = 0;
+
+    int i = 0;
+    goto loop2:
+
+loop2:
+    if(i >= arr_len) {
+        goto exit_cluster;
+    }
+    if(arr[i] <= avg) {
+        goto small_array;
+    }
+    goto big_array;
+
+small_array:
+    small_arr[j] = arr[i];
+    i++;
+    j++;
+    goto loop2;
+
+big_array:
+    big_arr[k] = arr[i];
+    i++;
+    k++;
+    goto loop2;
+
+exit_cluster:
+    ConventionCheck();
+    cluster(small_arr, j, depth-1);
+    ConventionCheck();
+    cluster(big_arr, k, depth-1);
